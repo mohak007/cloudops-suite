@@ -1,0 +1,34 @@
+
+services:
+
+  fastapi:
+
+    build: .
+
+    container_name: cloudops-fastapi
+
+    ports:
+      - "8001:8000"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    restart: always
+
+
+  streamlit:
+
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile
+
+    container_name: cloudops-dashboard
+
+    ports:
+      - "8501:8501"
+
+    depends_on:
+      - fastapi
+
+    restart: always
+

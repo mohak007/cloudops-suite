@@ -1,0 +1,47 @@
+```gitignore
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+
+# Mac
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# AWS
+.aws/
+
+# Kubernetes
+.kube/
+
+# Streamlit
+.streamlit/
+
+# Build files
+dist/
+build/
+
+# Docker
+*.tar
+
+# Secrets
+.env
+.env.local
+```
