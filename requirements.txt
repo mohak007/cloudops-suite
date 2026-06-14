@@ -30,3 +30,5 @@ pandas
 pytest
 pytest-cov
 httpx
+black
+flake8
