@@ -36,7 +36,7 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run Black
-        run: black --check
+        run: black --check .
       
       - name: Run Flake8
         run: flake8 .
