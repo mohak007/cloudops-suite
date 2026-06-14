@@ -4,7 +4,7 @@ from app.services.jenkins_service import (
     list_jobs,
     trigger_job,
     get_build_status,
-    get_console_output
+    get_console_output,
 )
 
 router = APIRouter()

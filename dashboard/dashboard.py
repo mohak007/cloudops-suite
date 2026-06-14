@@ -8,26 +8,12 @@ from pages.cloudwatch_dashboard import cloudwatch_page
 from pages.k8s_dashboard import k8s_page
 
 
-st.set_page_config(
-    page_title="CloudOps Suite",
-    page_icon="",
-    layout="wide"
-)
+st.set_page_config(page_title="CloudOps Suite", page_icon="", layout="wide")
 
-st.sidebar.title(
-    "CloudOps Suite"
-)
+st.sidebar.title("CloudOps Suite")
 
 page = st.sidebar.radio(
-    "Services",
-    [
-        "Home",
-        "EC2",
-        "S3",
-        "Docker",
-        "CloudWatch",
-        "Kubernetes"
-    ]
+    "Services", ["Home", "EC2", "S3", "Docker", "CloudWatch", "Kubernetes"]
 )
 
 if page == "Home":

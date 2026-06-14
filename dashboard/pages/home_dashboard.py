@@ -29,19 +29,13 @@ def safe_count(response):
 
 def home_page():
 
-    st.title(
-        "CloudOps Suite"
-    )
+    st.title("CloudOps Suite")
 
-    st.markdown(
-        "Manage AWS, Docker and Kubernetes resources from one dashboard."
-    )
+    st.markdown("Manage AWS, Docker and Kubernetes resources from one dashboard.")
 
     try:
 
-        ec2_instances = get(
-            "/ec2/list-instances"
-        )
+        ec2_instances = get("/ec2/list-instances")
 
     except Exception:
 
@@ -49,19 +43,15 @@ def home_page():
 
     try:
 
-        buckets = get(
-            "/s3/list-buckets"
-        )
-        
+        buckets = get("/s3/list-buckets")
+
     except Exception:
 
         buckets = []
 
     try:
 
-        containers = get(
-            "/docker/list-containers"
-        )
+        containers = get("/docker/list-containers")
 
     except Exception:
 
@@ -69,9 +59,7 @@ def home_page():
 
     try:
 
-        pods = get(
-            "/k8s/pods"
-        )
+        pods = get("/k8s/pods")
 
     except Exception:
 
@@ -81,24 +69,12 @@ def home_page():
 
     with col1:
 
-        st.metric(
-            "EC2 Instances",
-            safe_count(ec2_instances)
-        )
+        st.metric("EC2 Instances", safe_count(ec2_instances))
 
-        st.metric(
-            "Docker Containers",
-            safe_count(containers)
-        )
+        st.metric("Docker Containers", safe_count(containers))
 
     with col2:
 
-        st.metric(
-            "Kubernetes Pods",
-            safe_count(pods)
-        )
+        st.metric("Kubernetes Pods", safe_count(pods))
 
-        st.metric(
-            "S3 Buckets",
-            safe_count(buckets)
-        )
+        st.metric("S3 Buckets", safe_count(buckets))

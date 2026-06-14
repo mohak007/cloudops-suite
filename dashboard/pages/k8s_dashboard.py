@@ -6,9 +6,7 @@ from utils.api_client import get, post, delete
 
 def k8s_page():
 
-    st.header(
-        "Kubernetes Management"
-    )
+    st.header("Kubernetes Management")
 
     operation = st.selectbox(
         "Operation",
@@ -18,137 +16,78 @@ def k8s_page():
             "Create Namespace",
             "Create Deployment",
             "Scale Deployment",
-            "Delete Deployment"
-        ]
+            "Delete Deployment",
+        ],
     )
 
     if operation == "List Pods":
 
-        if st.button(
-            "Fetch Pods"
-        ):
+        if st.button("Fetch Pods"):
 
-            response = get(
-                "/k8s/pods"
-            )
+            response = get("/k8s/pods")
 
-            if isinstance(
-                response,
-                list
-            ):
+            if isinstance(response, list):
 
-                st.dataframe(
-                    pd.DataFrame(
-                        response
-                    ),
-                    use_container_width=True
-                )
+                st.dataframe(pd.DataFrame(response), use_container_width=True)
 
     elif operation == "List Services":
 
-        if st.button(
-            "Fetch Services"
-        ):
+        if st.button("Fetch Services"):
 
-            response = get(
-                "/k8s/services"
-            )
+            response = get("/k8s/services")
 
-            if isinstance(
-                response,
-                list
-            ):
+            if isinstance(response, list):
 
-                st.dataframe(
-                    pd.DataFrame(
-                        response
-                    ),
-                    use_container_width=True
-                )
+                st.dataframe(pd.DataFrame(response), use_container_width=True)
 
     elif operation == "Create Namespace":
 
-        namespace = st.text_input(
-            "Namespace"
-        )
+        namespace = st.text_input("Namespace")
 
-        if st.button(
-            "Create Namespace"
-        ):
+        if st.button("Create Namespace"):
 
-            with st.spinner(
-                "Creating namespace..."
-            ):
+            with st.spinner("Creating namespace..."):
 
-                response = post(
-                    f"/k8s/create-namespace/{namespace}"
-                )
+                response = post(f"/k8s/create-namespace/{namespace}")
 
             if "error" in response:
 
-                st.error(
-                    response["error"]
-                )
+                st.error(response["error"])
 
             else:
 
-                st.success(
-                    response["message"]
-                )
+                st.success(response["message"])
 
     elif operation == "Scale Deployment":
 
-        deployment_name = st.text_input(
-            "Deployment Name"
-        )
+        deployment_name = st.text_input("Deployment Name")
 
-        replicas = st.number_input(
-            "Replicas",
-            value=1
-        )
+        replicas = st.number_input("Replicas", value=1)
 
-        if st.button(
-            "Scale Deployment"
-        ):
+        if st.button("Scale Deployment"):
 
-            response = post(
-                f"/k8s/scale-deployment/{deployment_name}/{replicas}"
-            )
+            response = post(f"/k8s/scale-deployment/{deployment_name}/{replicas}")
 
             if "error" in response:
 
-                st.error(
-                    response["error"]
-                )
+                st.error(response["error"])
 
             else:
 
-                st.success(
-                    response["message"]
-                )
+                st.success(response["message"])
 
     elif operation == "Delete Deployment":
 
-        deployment_name = st.text_input(
-            "Deployment Name"
-        )
+        deployment_name = st.text_input("Deployment Name")
 
-        if st.button(
-            "Delete Deployment"
-        ):
+        if st.button("Delete Deployment"):
 
-            response = delete(
-                f"/k8s/delete-deployment/{deployment_name}"
-            )
+            response = delete(f"/k8s/delete-deployment/{deployment_name}")
 
             if "error" in response:
 
-                st.error(
-                    response["error"]
-                )
+                st.error(response["error"])
 
             else:
 
-                st.success(
-                    response["message"]
-                )
+                st.success(response["message"])
